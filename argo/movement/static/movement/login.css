@@ -1,0 +1,15 @@
+body{
+ background-color:#212529;
+ padding: 10% 2%;
+}
+.form-login{
+    margin-top:20%;
+    margin: auto;
+    background:white;
+    padding:100px 30px;
+    max-width:400px;
+    border-radius:20px;
+}
+.form-login h3{
+    text-align:center;
+}

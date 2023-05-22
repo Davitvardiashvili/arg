@@ -1,0 +1,13 @@
+{% extends 'movement/base.html' %}
+
+{% block content %}
+<form class="main-form" method="post">
+    {% csrf_token %}
+    <label for="id_text">About Text</label>
+    <textarea name="text" class="form-control" cols="40" rows="10" maxlength="1000" id="id_text">
+        {{about.text}}
+    </textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock content %}

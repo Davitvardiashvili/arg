@@ -1,0 +1,38 @@
+{% extends 'movement/base.html' %}
+
+{% block content %}
+<form class="main-form" method="post">
+    {% csrf_token %}
+    <h3>Services</h3>
+     <label for="id_text1">Title</label>
+    <input type="text" name="title" class="form-control">
+
+     <label for="id_text1">Text</label>
+     <textarea name="text1" cols="40" rows="10" class="form-control" maxlength="1000" id="id_text1">{{obj.text1}}</textarea>
+
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="table-bordered">
+        {% for si in servic %}
+            <tr>
+                <td>{{si.title}}</td>
+                <td>{{si.text}}</td>
+                <td><a class="btn btn-warning" aria-label="Close" href="{% url 'update-services' si.id %}">Edit</a></td>
+                <td><a class="btn btn-danger" aria-label="Close" href="{% url 'delete-services' si.id %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'movement/base.html' %}
+
+{% block content %}
+{% load static %}
+<form method="post" class="main-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <img class="imagia" src="{% static 'images' %}/{{side_image.images}}" alt="{{ side_image.id }}">
+    <label for="images" class="drop-container">
+      <span class="drop-title">Drop files here</span>
+      or
+      <input type="file" id="images" accept="image/*" name="images">
+    </label>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock content %}

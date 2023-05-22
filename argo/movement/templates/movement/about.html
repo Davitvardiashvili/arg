@@ -1,0 +1,37 @@
+{% extends 'movement/base.html' %}
+
+{% block content %}
+<form class="main-form" method="post">
+    {% csrf_token %}
+    <h3>About Page</h3>
+    <label for="id_text">About Text</label>
+    <textarea name="text" class="form-control" cols="40" rows="10" maxlength="1000" id="id_text">
+</textarea>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+<table class="table table-responsive-xl">
+    <thead class="thead-dark" >
+        <tr>
+            <th>Text</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody class="table-bordered">
+        <tr>
+            {% for ab in abouts %}
+                <tr>
+                    <td>{{ab.text}}</td>
+                    <td><a class="btn btn-warning" href="{% url 'update-about' ab.id %}">Edit</a></td>
+                    <td><a class="btn btn-danger"  href="{% url 'delete-about' ab.id %}">delete</a></td>
+                </tr>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+{% endblock content %}

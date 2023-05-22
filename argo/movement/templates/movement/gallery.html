@@ -1,0 +1,53 @@
+{% extends 'movement/base.html' %}
+
+{% block content %}
+<form method="post" class="main-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3>Gallery</h3>
+    <label for="images" class="drop-container">
+      <span class="drop-title">Drop files here</span>
+      or
+      <input type="file" id="images" accept="image/*" name="images" required>
+    </label>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+
+<div class="gallery">
+    {% load static %}
+    <table class="table table-responsive-xl">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="table-bordered">
+            {% for image in images %}
+                <tr>
+                    <td style="width:30px;">
+                        {{image.id}}
+                    </td>
+                    <td>
+                        <img class="imagia" src="{% static 'images' %}/{{image.images}}" alt="{{ image.id }}">
+
+                    </td>
+                    <td style="width:60px;">
+                        <a  class="btn btn-warning" href="{% url 'update-gallery' image.id %}">Edit</a>
+                    </td>
+                    <td style="width:60px;">
+                        <a class="btn btn-danger" href="{% url 'delete-gallery' image.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+
+</div>
+
+
+{% endblock content %}
